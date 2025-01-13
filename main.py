@@ -42,7 +42,7 @@ async def all_task(db: Session = Depends(get_db)):
     return all_task_from_db
 
 #Get Task By Id
-@app.get("/{todo_id}", response_model=Todo, tags=["todo"])
+@app.get("/", response_model=Todo, tags=["todo"])
 async def task_by_id_(task_id:int, db: Session = Depends(get_db)):
     task_by_id = get_task_by_id(db=db, task_id=task_id)
     if task_by_id is None:
@@ -50,7 +50,7 @@ async def task_by_id_(task_id:int, db: Session = Depends(get_db)):
     return task_by_id
 
 #Update a task 
-@app.put("/{todo_id}", response_model=Todo, tags=["todo"])
+@app.put("/", response_model=Todo, tags=["todo"])
 async def task_update(task_id:int, task:TodoUpdate, db: Session = Depends(get_db)):
     task_to_update = update_task(db=db, task_id=task_id, task=task)
     if task_to_update is None:
@@ -58,7 +58,7 @@ async def task_update(task_id:int, task:TodoUpdate, db: Session = Depends(get_db
     return task_to_update
 
 # Delete Task
-@app.delete("/{todo_id}", tags=["todo"])
+@app.delete("/", tags=["todo"])
 async def task_delete(task_id: int, db: Session = Depends(get_db)):
     task_for_delete = delete_task(db=db, task_id=task_id)
     if task_for_delete is None:
