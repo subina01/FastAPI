@@ -16,5 +16,16 @@ class Todo(BaseModel):
   due_date: datetime
   task_status: str
 
+class TodoUpdate(BaseModel):
+  task_assigned_to:str
+  task_description: str
+  start_date:datetime
+  due_date:datetime
+  task_status:str
+
+class TodoDelete(BaseModel):
+  id:int
+
+   
 class Config:
   orm_mode = True #Tells Pydantic to treat the sqlalchemy model as a dict
