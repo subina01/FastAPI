@@ -16,6 +16,5 @@ def create_user(db: Session,user:Register):
 
 # To Login
 def get_user_by_email(db: Session, email:str):
-  get_user = db.query(User).filter(User.email == email).first()
-  if get_user:
-    return "Login Sucessful!"
+  return db.query(User).filter(User.email == email).first()
+  
